@@ -1,9 +1,18 @@
 package pro.sky.lessons.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Objects;
 
+
+@Entity
 public class Book {
-    private int id;
+    @Id
+    @GeneratedValue
+
+
+    private Long id;
     private String name;
     private String author;
 
@@ -29,11 +38,11 @@ public class Book {
         return Objects.hash(id, name, author);
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

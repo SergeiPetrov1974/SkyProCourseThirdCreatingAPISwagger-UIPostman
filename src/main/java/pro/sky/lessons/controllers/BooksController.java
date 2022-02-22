@@ -19,7 +19,7 @@ public class BooksController {
     }
 
     @GetMapping("{id}") //GET http://localhost:8080/books/23
-    public ResponseEntity<Book> getBookInfo(@PathVariable Integer id) {
+    public ResponseEntity<Book> getBookInfo(@PathVariable Long id) {
         Book book = bookService.findBook(id);
         if (book == null) {
             return ResponseEntity.notFound().build();
@@ -47,7 +47,8 @@ public class BooksController {
     }
 
     @DeleteMapping("{id}") //DELETE http://localhost:8080/books/23
-    public Book deleteBook(@PathVariable int id) {
-        return bookService.deleteBook(id);
+    public ResponseEntity deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
+        return ResponseEntity.ok().build();
     }
 }
