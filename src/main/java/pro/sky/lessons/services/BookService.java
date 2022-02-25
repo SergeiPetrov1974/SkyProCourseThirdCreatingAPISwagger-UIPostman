@@ -6,9 +6,9 @@ import pro.sky.lessons.repositories.BookRepository;
 
 import java.util.Collection;
 
+
 @Service
 public class BookService {
-
     private final BookRepository bookRepository;
 
     public BookService(BookRepository bookRepository) {
@@ -27,11 +27,23 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public void deleteBook(Long id) {
+    public void deleteBook(long id) {
         bookRepository.deleteById(id);
+    }
+
+    public Book findBookByName(String name) {
+        return bookRepository.findByNameIgnoreCase(name);
     }
 
     public Collection<Book> getAllBooks() {
         return bookRepository.findAll();
+    }
+
+    public Collection<Book> findByAuthor(String author) {
+        return bookRepository.findBooksByAuthorContainsIgnoreCase(author);
+    }
+
+    public Collection<Book> findByNamePart(String part) {
+        return bookRepository.findAllByNameContainsIgnoreCase(part);
     }
 }
