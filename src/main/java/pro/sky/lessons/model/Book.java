@@ -1,8 +1,6 @@
 package pro.sky.lessons.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 
@@ -10,11 +8,13 @@ import java.util.Objects;
 public class Book {
     @Id
     @GeneratedValue
-
-
-    private Long id;
+    private long id;
     private String name;
     private String author;
+
+    @ManyToOne
+    @JoinColumn(name = "reader_id")
+    private Reader reader;
 
     @Override
     public String toString() {
